@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 public class Shooter : MonoBehaviour
 {
-    public float range = 10f;
-    public float fireRate = 1f;
+    [SerializeField]private float range;
+    [SerializeField]private float fireRate = 1f;
+    private Elements element;
     public GameObject projectile;
     public Transform firingPoint;
     [SerializeField]private Transform curr_target;
@@ -17,17 +18,23 @@ public class Shooter : MonoBehaviour
         StartCoroutine(FireRate());
     }
 
+    public void setStats(float _range,float _fireRate,Elements _element){
+        range = _range;
+        fireRate = _fireRate;
+        element = _element;
+        GetComponent<SphereCollider>().radius = range;
+    }
+
     void Update(){
         AssignTarget();
     }
 
     public IEnumerator FireRate(){
         while(true){
-            yield return new WaitForSeconds(1f/fireRate);
-            if(curr_target != null){
-                GameObject f = Instantiate(projectile,firingPoint.position,Quaternion.identity);
-                f.GetComponent<Projectile>().Setup(curr_target);
-            }
+            yield return new WaitUntil(() => curr_target != null);
+            GameObject f = Instantiate(projectile,firingPoint.position,Quaternion.identity);
+            f.GetComponent<Projectile>().Setup(curr_target,element);
+            yield return new WaitForSeconds(1f/fireRate); 
         }
     }
 

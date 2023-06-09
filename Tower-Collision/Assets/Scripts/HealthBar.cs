@@ -8,8 +8,9 @@ public class HealthBar : Subject
     [SerializeField]private float health;
     [SerializeField]private float MaxHealth;
 
-    void Start(){
-        health = MaxHealth;
+    public void setHealth(float value){
+        MaxHealth = value;
+        health = value;
     }
 
     public void Damage(float value){

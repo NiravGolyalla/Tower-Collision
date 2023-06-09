@@ -6,14 +6,14 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField]Transform end;
     [SerializeField]float speed;
+    [SerializeField]Elements element;
     [SerializeField]float damage;
-
-
+    
     void Update()
     {
         if(end == null || Vector3.Distance(transform.position,end.position) < .1f){
             if(end != null){
-                end.gameObject.GetComponent<HealthBar>().Damage(damage);
+                end.gameObject.GetComponent<Unit>().Damage(new Damage(damage,element));
             }
             Destroy(gameObject);
             return;
@@ -21,11 +21,9 @@ public class Projectile : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position,end.position,Time.deltaTime*speed);
     }
 
-    public void Setup(Transform _end){
+    public void Setup(Transform _end,Elements _element){
         end = _end;
+        element = _element;
+        GetComponent<Renderer>().material.color = ElementsInteractions.element_color[element];
     }
-}
-
-public enum Elements{
-    Fire,Water,Grass,Normal
 }

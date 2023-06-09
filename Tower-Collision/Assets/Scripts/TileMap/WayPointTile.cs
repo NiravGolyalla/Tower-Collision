@@ -5,7 +5,7 @@ using UnityEngine;
 public class WayPointTile : Tile
 {
     [SerializeField]Transform walkPoint;
-    [SerializeField]int index;
+    public int index;
     void Update(){
         if(EnemyPathManager.path.Count == index){
             EnemyPathManager.path.Add(walkPoint);
