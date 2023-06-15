@@ -33,27 +33,26 @@ public class Enemy : Unit
         }
     }
 
-    protected override void React(Reaction reaction){
-        switch(reaction){
-            //weakened
-            case Reaction.Steam:
-
-                break;
-            //dot
-            case Reaction.Burn:
-                break;
-            //root
-            case Reaction.Root:
-                break;
-            
-            case Reaction.Illuminate:
-                break;
-            case Reaction.Eclipse:
-                break;
-            default:
-                break;
-        }
-
+    protected override IEnumerator Steam(){
+        healthModifer += ElementsInteractions.steamMultipler;
+        yield return new WaitForSeconds(ElementsInteractions.steamTimer);
+        healthModifer -= ElementsInteractions.steamMultipler;
     }
+    protected override IEnumerator Burn(){
+        healthModifer += ElementsInteractions.steamMultipler;
+        yield return new WaitForSeconds(ElementsInteractions.steamTimer);
+        healthModifer -= ElementsInteractions.steamMultipler;
+    }
+    protected override IEnumerator Root(){
+        healthModifer += ElementsInteractions.steamMultipler;
+        yield return new WaitForSeconds(ElementsInteractions.steamTimer);
+        healthModifer -= ElementsInteractions.steamMultipler;
+    }
+    protected override IEnumerator Illuminate(){
+        yield return null;
+    }
+    protected override IEnumerator Eclipse(){
+        yield return null;
+    } 
 
 }

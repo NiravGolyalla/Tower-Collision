@@ -17,9 +17,20 @@ public class TowerController : Unit
         transform.parent.GetComponent<PlaceableTile>().place = false;
     }
 
-    protected override void React(Reaction reaction)
-    {
-        print(reaction);
+    protected override IEnumerator Steam(){
+        yield return null;
+    }
+    protected override IEnumerator Burn(){
+        yield return null;
+    }
+    protected override IEnumerator Root(){
+        yield return null;
+    }
+    protected override IEnumerator Illuminate(){
+        yield return null;
+    }
+    protected override IEnumerator Eclipse(){
+        yield return null;
     }
 }
     

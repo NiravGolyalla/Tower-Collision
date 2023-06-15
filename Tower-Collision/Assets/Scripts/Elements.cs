@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class ElementsInteractions{
+    public static float steamMultipler = 0.5f;
+    public static float steamTimer = 5f;
+    
     public static Dictionary<Elements,Color> element_color = new Dictionary<Elements,Color>{
         {Elements.Fire,Color.red},
         {Elements.Water,Color.blue},
