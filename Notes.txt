@@ -1,0 +1,4 @@
+Set Damage from the tower controller
+Use Damage struct to transfer 
+To buff, have a Buff Class and a Buff Manager:
+    Buff Class is a substriptable 
