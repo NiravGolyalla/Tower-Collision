@@ -2,3 +2,53 @@ Set Damage from the tower controller
 Use Damage struct to transfer 
 To buff, have a Buff Class and a Buff Manager:
     Buff Class is a substriptable 
+Using Elements from Hells Paradise
+
+(Each Script should do 1 thing)
+
+Tower Stats
+health                 
+Range
+Fire Rate
+Elements
+Damage
+Def(Tower Specific Stat) 
+
+Enemy Stats
+health
+Range
+Fire Rate
+Elements
+Damage 
+Speed(Enemy Specific Stat)
+
+
+
+
+Towers Components:
+Parent Script(manage communication between scripts)
+health
+Reaction Manager
+Attacking
+Buff Management
+Skill
+Upgrade System
+
+Enemies should have 
+
+
+
+Tower Stat Management
+Health Attack should manage their own copy of the current Stats
+Tower Srciptable objects manages base stats, read only
+Buff Manager contains all current buffs
+If something changes in the buff manager, recalcualte stats with base stats plus buff stats and update health, attack, 
+
+
+
+Tower Deplyoment Systems:
+Arknights like  -- Access to all towers at the same time
+TFT like -- Random access to cards in the deck
+No Upgrades for towers
+Small menu to upgrade towers (moba like)
+Need copies of the card to upgrade

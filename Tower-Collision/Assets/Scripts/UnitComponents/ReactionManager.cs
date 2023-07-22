@@ -2,25 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Unit : MonoBehaviour
+public abstract class ReactionManager : MonoBehaviour
 {
-    [SerializeField]protected Elements element;
-    [SerializeField]protected HealthBar health;
-    [SerializeField]protected Shooter attack;
     [SerializeField]protected Elements appliedElement = Elements.Null;
-    protected float attackModifer = 1.0f;
-    protected float healthModifer = 1.0f;
-
-
-
-
-    protected virtual void Awake(){
-        health.setHealth(10f);
-        attack.setStats(2f,1f,element);
-    }
-
-    public virtual void Damage(Damage val){
-        health.Damage(val.amount * healthModifer);
+    
+    public void Damage(Damage val){
         if(val.element == Elements.Normal){return;}
         
         if(appliedElement == Elements.Null){
@@ -34,9 +20,8 @@ public abstract class Unit : MonoBehaviour
                 appliedElement = val.element;
             }
         }
-        
-        
     }
+    
     protected virtual void React(Reaction reaction){
         switch(reaction){
             //weakened
@@ -68,4 +53,3 @@ public abstract class Unit : MonoBehaviour
     protected abstract IEnumerator Illuminate();
     protected abstract IEnumerator Eclipse();
 }
-

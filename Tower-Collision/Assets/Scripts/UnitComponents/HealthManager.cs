@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBar : Subject
+public class HealthManager : Subject
 {
     private float percent;
     [SerializeField]private float health;
     [SerializeField]private float MaxHealth;
 
-    public void setHealth(float value){
+    public void SetHealth(float value){
         MaxHealth = value;
         health = value;
     }

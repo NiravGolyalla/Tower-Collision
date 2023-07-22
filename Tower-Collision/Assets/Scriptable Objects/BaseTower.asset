@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838bfd8d8c62c9a42b54c1be7833a22b, type: 3}
-  m_Name: TowerScriptableObject
+  m_Script: {fileID: 11500000, guid: 487714b5310c65a4fbeae3819fa2c062, type: 3}
+  m_Name: BaseTower
   m_EditorClassIdentifier: 
   health: 10
-  range: 5
+  range: 10
   fireRate: 1
-  Damage: 5
-  element: 1
+  damage: 5
+  element: 0
   projectile: {fileID: 0}
-  TowerBase: {fileID: 0}

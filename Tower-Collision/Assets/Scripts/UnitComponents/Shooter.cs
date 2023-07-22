@@ -5,23 +5,28 @@ using System.Threading.Tasks;
 
 public class Shooter : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField]private float range;
     [SerializeField]private float fireRate = 1f;
-    private Elements element;
-    public GameObject projectile;
-    public Transform firingPoint;
-    [SerializeField]private Transform curr_target;
-    [SerializeField]private string target_tag;
+    [SerializeField]private float damage = 1f;
+    [SerializeField]private Elements element;
+    
+    [SerializeField]private readonly GameObject projectile;
+    [SerializeField]private readonly Transform firingPoint;
+    
+    private Transform curr_target;
+    [SerializeField]private readonly string target_tag;
     private List<Transform> targets = new List<Transform>(); 
     
     void Start(){
         StartCoroutine(FireRate());
     }
 
-    public void setStats(float _range,float _fireRate,Elements _element){
+    public void SetStats(float _range,float _fireRate,Elements _element,float _damage){
         range = _range;
         fireRate = _fireRate;
         element = _element;
+        damage = _damage;
         GetComponent<SphereCollider>().radius = range;
     }
 
@@ -33,7 +38,7 @@ public class Shooter : MonoBehaviour
         while(true){
             yield return new WaitUntil(() => curr_target != null);
             GameObject f = Instantiate(projectile,firingPoint.position,Quaternion.identity);
-            f.GetComponent<Projectile>().Setup(curr_target,element);
+            f.GetComponent<Projectile>().Setup(curr_target,element,damage);
             yield return new WaitForSeconds(1f/fireRate); 
         }
     }

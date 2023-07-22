@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class BuffManger : MonoBehaviour
 {
-    Dictionary<Buff,Buff> buffs; 
+    Dictionary<string,Buff> buffs; 
 }

@@ -21,9 +21,10 @@ public class Projectile : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position,end.position,Time.deltaTime*speed);
     }
 
-    public void Setup(Transform _end,Elements _element){
+    public void Setup(Transform _end,Elements _element,float _damage){
         end = _end;
         element = _element;
+        damage = _damage;
         GetComponent<Renderer>().material.color = ElementsInteractions.element_color[element];
     }
 }
