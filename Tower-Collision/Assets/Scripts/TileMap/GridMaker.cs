@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 // [ExecuteInEditMode]
 public class GridMaker : MonoBehaviour
@@ -10,16 +12,20 @@ public class GridMaker : MonoBehaviour
     [SerializeField]string layout = "@@@@@@@@_@@2aa3@@_0a1@@4a5_@@@@@@@@_@@@@@@@@";
     Dictionary<Vector3,Tile> tiles;
     [SerializeField]GameObject towerprefab;
-
     Color original_color;
     [SerializeField]Color highlight;
     GameObject lastHighlightedObject = null;
-    
+    public List<TowerSystem> towersActive = new List<TowerSystem>();
+    private NavMeshSurface surface;
 
+    void Awake(){
+        surface = GetComponent<NavMeshSurface>();
+    }
 
     void Start(){
         tiles = new Dictionary<Vector3, Tile>();
         GenerateGrid();
+        surface.BuildNavMesh();
     }
 
     void DestroyGrid(){
@@ -32,6 +38,7 @@ public class GridMaker : MonoBehaviour
     }
 
     void Update(){
+        towersActive.RemoveAll(item => item == null);
         GameObject curr = MouseManager.instance.getMouseHit();
         if(curr == null){
             if(lastHighlightedObject != null){
@@ -53,10 +60,12 @@ public class GridMaker : MonoBehaviour
         
         if(Input.GetMouseButton(0) && curr != null){
             PlaceableTile ptile = curr.GetComponent<PlaceableTile>();
-            if(ptile != null && !ptile.place){
+            if(ptile != null && ptile.place == null && towersActive.Count < 5){
                 GameObject s = Instantiate(towerprefab,ptile.getSpawnPoint().position,Quaternion.identity);    
                 s.transform.parent = ptile.transform;
-                ptile.place = true;
+                ptile.place = s.GetComponent<TowerSystem>();
+                towersActive.Add(s.GetComponent<TowerSystem>());
+                // surface.BuildNavMesh();
             }   
         }
     }

@@ -7,8 +7,8 @@ public class WayPointTile : Tile
     [SerializeField]Transform walkPoint;
     public int index;
     void Update(){
-        if(EnemyPathManager.path.Count == index){
-            EnemyPathManager.path.Add(walkPoint);
+        if(Spawner.path.Count == index){
+            Spawner.path.Add(walkPoint);
         }
     }
     

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &684453846426574031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3205477544999277625}
+  - component: {fileID: 3622829563258180312}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3205477544999277625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684453846426574031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3622829563258180312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684453846426574031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8890ac99ac21034b8bb49a41d50814c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeable: {fileID: 7012904452050392271, guid: 446df1a9787111c4297214c912c8060c,
+    type: 3}
+  road: {fileID: 729597220158608075, guid: 7bdae194456ac2f4f84a493e0e40a33c, type: 3}
+  waypoint: {fileID: 2875853351107394648, guid: 072d3b1ce2da4bd4d852d196e7117fd1,
+    type: 3}
+  width: 8
+  height: 5
+  b_width: 3
+  b_height: 3
+  layout: '@@@@@@@@_@@2aa3@@_0a1@@4a5_@@@@@@@@_@@@@@@@@'
+  towerprefab: {fileID: 6266151397630666858, guid: c40fe99db691af24d971e6ab5dca605b,
+    type: 3}
+  highlight: {r: 1, g: 1, b: 1, a: 1}
+  towersActive: []

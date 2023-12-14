@@ -4,27 +4,24 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]Transform end;
-    [SerializeField]float speed;
-    [SerializeField]Elements element;
-    [SerializeField]float damage;
+    [SerializeField]StateMachine target;
+    [SerializeField]float speed = 10;
+    [SerializeField]Damage damage;
     
     void Update()
     {
-        if(end == null || Vector3.Distance(transform.position,end.position) < .1f){
-            if(end != null){
-                end.gameObject.GetComponent<Unit>().Damage(new Damage(damage,element));
+        if(target == null || Vector3.Distance(transform.position,target.transform.position) < .1f){
+            if(target != null){
+                target.healthSubSystem.Damage(damage);
             }
             Destroy(gameObject);
             return;
         }    
-        transform.position = Vector3.MoveTowards(transform.position,end.position,Time.deltaTime*speed);
+        transform.position = Vector3.MoveTowards(transform.position,target.transform.position,Time.deltaTime*speed);
     }
 
-    public void Setup(Transform _end,Elements _element,float _damage){
-        end = _end;
-        element = _element;
+    public void Setup(StateMachine _target,Damage _damage){
+        target = _target;
         damage = _damage;
-        GetComponent<Renderer>().material.color = ElementsInteractions.element_color[element];
     }
 }
