@@ -29,10 +29,7 @@ public class AttackSubSystem : MonoBehaviour
     }
 
     void Update(){
-        if(tag != "Enemy"){
-            print(currTarget);    
-        }
-        
+        ManageCooldown();
     }
 
     public void LoadAttackStats(AttackStats existingStats)
@@ -57,10 +54,8 @@ public class AttackSubSystem : MonoBehaviour
 
     public void DetectTarget(){
         if(currTarget != null){
-            print("OMG YOU MMARTG");
             return;
         }
-
         Collider[] colliders = Physics.OverlapSphere(transform.position, DetectRange,TargetLayer);
         targets = new List<StateMachine>();
         foreach (Collider collider in colliders)
@@ -70,9 +65,8 @@ public class AttackSubSystem : MonoBehaviour
                 targets.Add(target);
             }
         }
-
         if(currTarget == null && targets.Count > 0){
-            currTarget = Targeting.DetermineTarget(targets);
+            currTarget = Targeting.DetermineTarget(mainSystem,targets);
         }
     }
 
@@ -90,6 +84,9 @@ public class AttackSubSystem : MonoBehaviour
     }
 
     public void wipeTarget(){
+        if(currTarget == null){
+            return;
+        }
         if(Vector3.Distance(currTarget.transform.position,transform.position) > DetectRange){
             currTarget = null;
         }

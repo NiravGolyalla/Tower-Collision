@@ -21,7 +21,13 @@ public class EnemyStatsLoader : StatLoader
 
     public override List<State> StateLoader()
     {
-        return null;
+        List<State> states = new List<State>
+        {
+            stats.enemyPathFollowState,
+            stats.enemyApproachState,
+            stats.enemyAttackState
+        };
+        return states; 
     }
 }
 

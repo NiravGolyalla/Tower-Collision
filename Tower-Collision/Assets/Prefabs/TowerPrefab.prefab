@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8953620257524340626}
   - component: {fileID: 8377791449801118768}
   - component: {fileID: -2819547901463009951}
+  - component: {fileID: 252003415664473585}
   m_Layer: 7
   m_Name: TowerPrefab
   m_TagString: Untagged
@@ -107,8 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05fedb61e1724d45a3cf6c0292ccfaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Enemy
-  currTarget: {fileID: 0}
   projectile: {fileID: 1647539611169569990, guid: ac6c8429505f28742bc02dae9311e26a,
     type: 3}
   firingPoint: {fileID: 3519681783335804975}
@@ -171,6 +170,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a78736ea0c6be7e449f84a4c56bafc2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &252003415664473585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6266151397630666858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7baa4201b9c85dc4d9369ce4672b66a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8944819995332311499

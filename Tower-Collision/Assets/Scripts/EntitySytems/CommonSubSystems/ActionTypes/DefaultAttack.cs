@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DefaultAttack", menuName = "Custom/Create Attacks")]
+[CreateAssetMenu(fileName = "DefaultAttack", menuName = "Action/Attack/Create DefaultAttacks")]
 public class DefaultAttack : AttackAction
 {
     public override void PerformAttack(AttackSubSystem attacker, StateMachine target){

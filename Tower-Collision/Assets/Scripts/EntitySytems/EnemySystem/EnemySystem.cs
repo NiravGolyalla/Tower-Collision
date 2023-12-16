@@ -6,33 +6,25 @@ using System.IO;
 
 public class EnemySystem : StateMachine
 {
-    public List<Transform> path{get;set;} 
-    [SerializeField]int index = 0;
-    public Transform target{get;set;}
-    public float distanceFromExit = 10f;
-    AIMovementSubSystem movementSubSystem;
+    public AIMovementSubSystem movementSubSystem{get;private set;}
+    public EnemyPathFollow enemyPathFollowState{get;private set;}
+    public EnemyApproachState enemyApproachState{get;private set;}
+    public EnemyAttackState enemyAttackState{get;private set;}
 
     protected virtual void Awake(){
         statLoader = GetComponent<EnemyStatsLoader>();
         attackSubSystem = GetComponent<AttackSubSystem>();
         healthSubSystem = GetComponent<HealthSubSystem>();
         movementSubSystem = GetComponent<AIMovementSubSystem>();
+        
+        List<State> states = statLoader.StateLoader();
+        enemyPathFollowState = (EnemyPathFollow)states[0];
+        enemyApproachState = (EnemyApproachState)states[1];
+        enemyAttackState = (EnemyAttackState)states[2];
+        currentState = enemyPathFollowState;
     }
 
     void Update(){
-        if (Vector3.Distance(transform.position, target.position) < 1f)
-        {
-            index += 1;
-            if (index >= path.Count){
-                Destroy(gameObject);
-                return;
-            }
-            target = path[index];
-        }
-        distanceFromExit = (path.Count - index)*Vector3.Distance(transform.position, target.position);
-        movementSubSystem.MoveToTarget(target);
-        // attackSubSystem.DetectTarget();
-        attackSubSystem.ManageCooldown();
-        // attackSubSystem.AttackTarget();
+        StateUpdate();
     }
 }

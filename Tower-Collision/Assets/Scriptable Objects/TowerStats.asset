@@ -26,4 +26,6 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
-  blockAmount: 0
+  SearchState: {fileID: 11400000, guid: 813f516d5aeaa2041a67c61fbaaf7dd7, type: 2}
+  AttackState: {fileID: 11400000, guid: 69a1907732e316345bd59a3534a54172, type: 2}
+  blockAmount: 2

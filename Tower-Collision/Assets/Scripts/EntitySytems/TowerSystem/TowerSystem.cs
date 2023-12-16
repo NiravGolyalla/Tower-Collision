@@ -7,11 +7,13 @@ public class TowerSystem : StateMachine
 {
     public TowerSearchState searchState{get; private set;}
     public TowerAttackState attackState{get; private set;}
+    public BlockerSubSystem blockerSubSystem{get; private set;}
 
     protected virtual void Awake(){
         statLoader = GetComponent<TowerStatsLoader>();
         attackSubSystem = GetComponent<AttackSubSystem>();
         healthSubSystem = GetComponent<HealthSubSystem>();
+        blockerSubSystem = GetComponent<BlockerSubSystem>();
         
         List<State> states = statLoader.StateLoader();
         searchState = (TowerSearchState)states[0];

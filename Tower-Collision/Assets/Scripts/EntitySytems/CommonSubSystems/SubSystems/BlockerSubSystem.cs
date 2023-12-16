@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class BlockerSubSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private StateMachine mainSystem;
+    List<StateMachine> blocking = new List<StateMachine>();
+    public float blockAmount {get; private set;}    
+    
+    void Awake(){
+        mainSystem = GetComponent<StateMachine>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Start(){
+        if(mainSystem.GetType().Equals(typeof(TowerSystem))){
+            blockAmount = ((TowerStatsLoader)mainSystem.statLoader).GetBlockAmount();    
+        }
+    }
+    void Update(){
+        blocking.RemoveAll(item => item==null);
+    }
+
+    public bool checkBlockStatus(){
+        return blockAmount > blocking.Count;
+    }
+
+    public void BlockUnit(StateMachine target){
+        blocking.Add(target);
     }
 }

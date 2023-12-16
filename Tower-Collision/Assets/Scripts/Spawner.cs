@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField]GameObject prefab;
     // [SerializeField]Transform end;
-    [SerializeField]float rate = 10f;
+    [SerializeField]float rate = 5f;
     
     public static List<Transform> path = new List<Transform>();
 
@@ -18,8 +18,7 @@ public class Spawner : MonoBehaviour
         while(true){
             yield return new WaitForSeconds(rate);
             GameObject f = Instantiate(prefab,path[0].position,Quaternion.identity);
-            f.GetComponent<EnemySystem>().path = path;
-            f.GetComponent<EnemySystem>().target = path[0];
+            f.GetComponent<AIMovementSubSystem>().setPath(path);
         }
     }
 }
