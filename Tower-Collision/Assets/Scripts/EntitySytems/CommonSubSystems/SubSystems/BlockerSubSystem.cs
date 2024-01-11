@@ -1,24 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class BlockerSubSystem : MonoBehaviour
 {
     private StateMachine mainSystem;
-    List<StateMachine> blocking = new List<StateMachine>();
+    [SerializeField]List<StateMachine> blocking = new List<StateMachine>();
     public float blockAmount {get; private set;}    
     
     void Awake(){
         mainSystem = GetComponent<StateMachine>();
     }
 
-    void Start(){
+    public void GetStats(){
         if(mainSystem.GetType().Equals(typeof(TowerSystem))){
             blockAmount = ((TowerStatsLoader)mainSystem.statLoader).GetBlockAmount();    
         }
     }
     void Update(){
-        blocking.RemoveAll(item => item==null);
+        if(blocking.Contains(null)){
+            blocking.RemoveAll(ItemCanBeNullAttribute => ItemCanBeNullAttribute == null);
+        }
     }
 
     public bool checkBlockStatus(){
@@ -26,6 +29,9 @@ public class BlockerSubSystem : MonoBehaviour
     }
 
     public void BlockUnit(StateMachine target){
-        blocking.Add(target);
+        if(blocking.Contains(target)){
+            blocking.Add(target);
+        }
+        
     }
 }

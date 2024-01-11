@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class AttackSubSystem : MonoBehaviour
 {
-    public float Attack {get; private set;}
-    public Elements Element {get; private set;}
-    public float AttackRange{get; private set;}
-    public float DetectRange{get; private set;}
-    float AtkInterval;
-    TargetPriority Targeting;
-    AttackAction AttackAction;
-    LayerMask TargetLayer;
-
+    public float Attack { get; private set; }
+    public DamageTypes DamageType { get; private set; }
+    public float Ticks { get; private set; }
+    public SameType SameType { get; private set; }
+    public Yellow Yellow { get; private set; }
+    public Cyan Cyan { get; private set; }
+    public Magenta Magenta { get; private set; }
+    public float AttackRange { get; private set; }
+    public float DetectRange { get; private set; }
+    public float AtkInterval { get; private set; }
+    public TargetPriority Targeting { get; private set; }
+    public AttackAction AttackAction { get; private set; }
+    public LayerMask TargetLayer { get; private set; }
     private StateMachine mainSystem;
     public StateMachine currTarget {get; private set;}
     private float AtkCooldown = 0f;
@@ -24,25 +29,35 @@ public class AttackSubSystem : MonoBehaviour
         mainSystem = GetComponent<StateMachine>();
     }
 
-    void Start(){
+    public void GetStats(){
         LoadAttackStats(mainSystem.statLoader.AttackLoader());
     }
 
     void Update(){
-        ManageCooldown();
+        if(mainSystem.enableMachine){
+            ManageCooldown();
+        }
     }
 
-    public void LoadAttackStats(AttackStats existingStats)
+    public void LoadAttackStats(AttackStats other)
     {
-        Attack = existingStats.Attack;
-        AttackRange = existingStats.AttackRange;
-        DetectRange = existingStats.DetectRange;
-        Element = existingStats.Element;
-        AtkInterval = existingStats.AtkInterval;
-        Targeting = existingStats.Targeting;
-        AttackAction = existingStats.AttackAction;
-        TargetLayer = existingStats.TargetLayer;
+        // Copy the values from the other AttackStats object
+        Attack = other.Attack;
+        DamageType = other.DamageType;
+        Ticks = other.Ticks;
+        SameType = other.SameType;
+        Yellow = other.Yellow;
+        Cyan = other.Cyan;
+        Magenta = other.Magenta;
+        AttackRange = other.AttackRange;
+        DetectRange = other.DetectRange;
+        AtkInterval = other.AtkInterval;
+        Targeting = other.Targeting;
+        AttackAction = other.AttackAction;
+        TargetLayer = other.TargetLayer;
+        firingPoint.GetComponent<Renderer>().material.color = Damage.colorMap[other.DamageType];
     }
+
 
     void OnDrawGizmos()
     {

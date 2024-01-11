@@ -16,9 +16,10 @@ public class EnemyTargetPriority : TargetPriority
             float distance = Vector3.Distance(targets[i].transform.position,enemySystem.transform.position);
             if (closestToExit.Item1 > distance){
                 if (targets[i].GetType() == typeof(TowerSystem)){
-                    if(((TowerSystem)targets[i]).blockerSubSystem.checkBlockStatus()){
-                        closestToExit = (distance, i);
-                    }
+                    closestToExit = (distance, i);
+                    // if(((TowerSystem)targets[i]).blockerSubSystem.checkBlockStatus()){
+                        
+                    // }
                 }
                 
             }

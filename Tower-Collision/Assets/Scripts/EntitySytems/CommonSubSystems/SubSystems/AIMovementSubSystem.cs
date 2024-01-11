@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AIMovementSubSystem : MonoBehaviour
 {
     StateMachine mainSystem;
-    private NavMeshAgent agent;
+    public NavMeshAgent agent{get;private set;}
     [SerializeField]float speed;
     public List<Transform> path{get;private set;} 
     [SerializeField]int index = 0;
@@ -18,7 +18,7 @@ public class AIMovementSubSystem : MonoBehaviour
         mainSystem = GetComponent<StateMachine>();
     }
 
-    void Start(){
+    public void GetStats(){
         speed = ((EnemyStatsLoader)mainSystem.statLoader).getSpeed();
         agent.speed = speed;
     }

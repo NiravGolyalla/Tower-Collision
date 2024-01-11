@@ -7,7 +7,8 @@ public class TowerStatsLoader : StatLoader
     [SerializeField]TowerStats stats;
 
     public override AttackStats AttackLoader(){
-        return new AttackStats(stats.Attack,stats.AttackRange,stats.DetectRange,stats.Element,stats.AtkInterval,stats.Targeting,stats.AttackAction,stats.TargetLayer);
+        
+        return new AttackStats(stats.Attack,TowerColorSelect.clickedValue,stats.ticks,stats.sameType,stats.yellow,stats.cyan,stats.magenta,stats.AttackRange,stats.DetectRange,stats.AtkInterval,stats.Targeting,stats.AttackAction,stats.TargetLayer);
     }
 
     public override HealthStats HealthLoader()

@@ -7,20 +7,32 @@ using UnityEngine;
 public struct AttackStats
 {
     public float Attack { get; private set; }
+    public DamageTypes DamageType { get; private set; }
+    public float Ticks { get; private set; }
+    public SameType SameType { get; private set; }
+    public Yellow Yellow { get; private set; }
+    public Cyan Cyan { get; private set; }
+    public Magenta Magenta { get; private set; }
     public float AttackRange { get; private set; }
     public float DetectRange { get; private set; }
-    public Elements Element { get; private set; }
     public float AtkInterval { get; private set; }
     public TargetPriority Targeting { get; private set; }
     public AttackAction AttackAction { get; private set; }
     public LayerMask TargetLayer { get; private set; }
 
-    public AttackStats(float attack, float attackRange,float detectRange, Elements element, float atkInterval, TargetPriority targeting, AttackAction attackAction,LayerMask targetLayer)
+    // Constructor
+    public AttackStats(float attack, DamageTypes damageType, float ticks, SameType sameType, Yellow yellow, Cyan cyan, Magenta magenta,
+                       float attackRange, float detectRange, float atkInterval, TargetPriority targeting, AttackAction attackAction, LayerMask targetLayer)
     {
         Attack = attack;
-        AttackRange = detectRange;
-        DetectRange = attackRange;
-        Element = element;
+        DamageType = damageType;
+        Ticks = ticks;
+        SameType = sameType;
+        Yellow = yellow;
+        Cyan = cyan;
+        Magenta = magenta;
+        AttackRange = attackRange;
+        DetectRange = detectRange;
         AtkInterval = atkInterval;
         Targeting = targeting;
         AttackAction = attackAction;

@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     {
         if(target == null || Vector3.Distance(transform.position,target.transform.position) < .1f){
             if(target != null){
-                target.healthSubSystem.Damage(damage);
+                target.healthSubSystem.AddDamageSource(damage);
             }
             Destroy(gameObject);
             return;
@@ -23,5 +23,6 @@ public class Projectile : MonoBehaviour
     public void Setup(StateMachine _target,Damage _damage){
         target = _target;
         damage = _damage;
+        GetComponent<Renderer>().material.color = Damage.colorMap[damage.type];
     }
 }

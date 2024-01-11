@@ -8,14 +8,21 @@ public class EnemyPathFollow : State
 {
     public override State UpdateState(StateMachine system)
     {
-        Debug.Log("EnemyPathFollow");
+    
         EnemySystem enemySystem = (EnemySystem)system;
-        enemySystem.movementSubSystem.FollowPath();
-        enemySystem.movementSubSystem.MoveToTarget(enemySystem.movementSubSystem.target);
+        enemySystem.state = "EnemyPathFollow";
+
         enemySystem.attackSubSystem.DetectTarget();
-        Debug.Log(enemySystem.attackSubSystem.currTarget);
-        if(enemySystem.attackSubSystem.currTarget != null){
-            ((TowerSystem)enemySystem.attackSubSystem.currTarget).blockerSubSystem.BlockUnit(enemySystem);
+        
+        if(Vector3.Distance(enemySystem.movementSubSystem.target.position,enemySystem.movementSubSystem.agent.destination) > 1f){
+            enemySystem.movementSubSystem.MoveToTarget(enemySystem.movementSubSystem.target);
+            enemySystem.movementSubSystem.agent.stoppingDistance = 0f;
+        }
+        
+        enemySystem.movementSubSystem.FollowPath();
+        
+        if(enemySystem.attackSubSystem.currTarget != null ){
+            // ((TowerSystem)enemySystem.attackSubSystem.currTarget).blockerSubSystem.BlockUnit(enemySystem);;
             return SwitchState(enemySystem,enemySystem.enemyApproachState);
         }
         

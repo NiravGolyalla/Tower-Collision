@@ -7,8 +7,8 @@ public class EnemyAttackState : State
 {
     public override State UpdateState(StateMachine system)
     {
-        Debug.Log("AttackState");
         EnemySystem enemySystem = (EnemySystem)system;
+        enemySystem.state = "EnemyAttackState";
         if(enemySystem.attackSubSystem.currTarget == null){
             return SwitchState(enemySystem,enemySystem.enemyPathFollowState);
         }

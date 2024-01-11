@@ -9,19 +9,23 @@ public class EnemyApproachState : State
     public override State UpdateState(StateMachine system)
     {
         EnemySystem enemySystem = (EnemySystem)system;
-        enemySystem.movementSubSystem.MoveToTarget(enemySystem.attackSubSystem.currTarget.transform);
-        Debug.Log("Approch");
+        enemySystem.state = "EnemyApproachState";
         if(enemySystem.attackSubSystem.currTarget == null){
             return SwitchState(enemySystem,enemySystem.enemyPathFollowState);
         }
+
+        if(Vector3.Distance(enemySystem.attackSubSystem.currTarget.transform.position,enemySystem.movementSubSystem.agent.destination) > 1f){
+            enemySystem.movementSubSystem.MoveToTarget(enemySystem.attackSubSystem.currTarget.transform);
+            enemySystem.movementSubSystem.agent.stoppingDistance = enemySystem.attackSubSystem.AttackRange/2;
+        }
         float distance = Vector3.Distance(enemySystem.attackSubSystem.currTarget.transform.position,enemySystem.transform.position); 
-        if(distance > enemySystem.attackSubSystem.DetectRange){
+        if(distance >= enemySystem.attackSubSystem.DetectRange){
             return SwitchState(enemySystem,enemySystem.enemyPathFollowState);
         }
         if(distance < enemySystem.attackSubSystem.AttackRange){
             return SwitchState(enemySystem,enemySystem.enemyAttackState);
         }
-        Debug.Log("HEre");
+        
         
         return this;
     }

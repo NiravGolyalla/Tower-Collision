@@ -2,12 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyStatsLoader : StatLoader
 {
     [SerializeField]EnemyStats stats;
 
+    public void SetStats(EnemyStats enemyStats)
+    {
+        stats = enemyStats;
+    }
+
     public override AttackStats AttackLoader(){
-        return new AttackStats(stats.Attack,stats.AttackRange,stats.DetectRange,stats.Element,stats.AtkInterval,stats.Targeting,stats.AttackAction,stats.TargetLayer);
+        DamageTypes dmgType = stats.DamageType;
+        if(stats.randomElement){
+            int i = Random.Range(0,3);
+            dmgType = (DamageTypes)i;
+        }
+        return new AttackStats(stats.Attack,dmgType,stats.ticks,stats.sameType,stats.yellow,stats.cyan,stats.magenta,stats.AttackRange,stats.DetectRange,stats.AtkInterval,stats.Targeting,stats.AttackAction,stats.TargetLayer);
     }
 
     public override HealthStats HealthLoader()

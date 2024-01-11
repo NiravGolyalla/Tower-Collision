@@ -10,21 +10,28 @@ public class EnemySystem : StateMachine
     public EnemyPathFollow enemyPathFollowState{get;private set;}
     public EnemyApproachState enemyApproachState{get;private set;}
     public EnemyAttackState enemyAttackState{get;private set;}
+    public string state;
 
-    protected virtual void Awake(){
+    protected override void Awake(){
+        base.Awake();
         statLoader = GetComponent<EnemyStatsLoader>();
         attackSubSystem = GetComponent<AttackSubSystem>();
         healthSubSystem = GetComponent<HealthSubSystem>();
         movementSubSystem = GetComponent<AIMovementSubSystem>();
-        
+    }
+
+    public override void StartSystem(){
         List<State> states = statLoader.StateLoader();
         enemyPathFollowState = (EnemyPathFollow)states[0];
         enemyApproachState = (EnemyApproachState)states[1];
         enemyAttackState = (EnemyAttackState)states[2];
         currentState = enemyPathFollowState;
+
+        attackSubSystem.GetStats();
+        healthSubSystem.GetStats();
+        movementSubSystem.GetStats();
+        
+        enableMachine = true;
     }
 
-    void Update(){
-        StateUpdate();
-    }
 }
