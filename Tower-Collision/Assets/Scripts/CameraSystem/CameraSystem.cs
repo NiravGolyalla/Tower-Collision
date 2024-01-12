@@ -38,11 +38,11 @@ public class CameraSystem : MonoBehaviour
     private void HandleMouseClickPan(){
         Vector3 moveDir = new Vector3(0,0,0);
         
-        if(Input.GetMouseButtonDown(1)){
+        if(Input.GetMouseButtonDown(0)){
             trackMouse = true;
             lastPosition = Input.mousePosition;        
         } 
-        if(Input.GetMouseButtonUp(1)){
+        if(Input.GetMouseButtonUp(0)){
             trackMouse = false;
         }
 

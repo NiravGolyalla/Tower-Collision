@@ -108,7 +108,7 @@ public class GridMaker : MonoBehaviour
             lastHighlightedObject = curr;
         }
 
-        if (Input.GetMouseButton(0) && curr != null)
+        if (Input.GetMouseButton(1) && curr != null)
         {
             PlaceableTile ptile = curr.GetComponent<PlaceableTile>();
             if (ptile != null && ptile.place == null)

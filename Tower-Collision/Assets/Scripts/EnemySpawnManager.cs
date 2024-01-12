@@ -13,7 +13,6 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] HealthCanvas healthCanvas;
     [SerializeField] GridMaker grid;
 
-
     void Start()
     {
         // GeneratePaths();
@@ -78,19 +77,20 @@ public class EnemySpawnManager : MonoBehaviour
 
     public IEnumerator SpawnRate()
     {
-        int i = 0;
+
         while (true)
         {
             yield return new WaitForSeconds(rate);
             List<Transform>path = GeneratePaths();
-
-            GameObject f = Instantiate(prefab, path[0].position, Quaternion.identity,gameObject.transform);
-            EnemyStats stats = scriptableObjects[Random.Range(0, scriptableObjects.Length)];
-            f.GetComponent<EnemyStatsLoader>().SetStats(stats);
-            f.GetComponent<EnemySystem>().StartSystem();
-            f.GetComponent<AIMovementSubSystem>().setPath(path);
-            healthCanvas.AddHealthBar(f.GetComponent<EnemySystem>());
-            i += 1;
+            for(int j = 0; j < 2; j++){
+                GameObject f = Instantiate(prefab, path[0].position, Quaternion.identity,gameObject.transform);
+                EnemyStats stats = scriptableObjects[Random.Range(0, scriptableObjects.Length)];
+                f.GetComponent<EnemyStatsLoader>().SetStats(stats);
+                f.GetComponent<EnemySystem>().StartSystem();
+                f.GetComponent<AIMovementSubSystem>().setPath(path);
+                healthCanvas.AddHealthBar(f.GetComponent<EnemySystem>());    
+            }
+            
 
         }
     }

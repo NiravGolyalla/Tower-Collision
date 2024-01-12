@@ -16,7 +16,7 @@ MonoBehaviour:
   Attack: 2
   Defense: 2
   DetectRange: 4
-  AttackRange: 2
+  AttackRange: 0
   DamageType: 0
   BreakAmount: 10
   BreakInterval: 2

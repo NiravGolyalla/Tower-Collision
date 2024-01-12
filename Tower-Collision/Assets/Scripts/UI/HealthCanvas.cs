@@ -30,7 +30,8 @@ public class HealthCanvas : MonoBehaviour
     }
 
     public void AddHealthBar(StateMachine m){
-        ObjUI x = Instantiate(Info,transform);
+        ObjUI x = Instantiate(Info,cam.WorldToScreenPoint(m.uiPlacement.position),Quaternion.identity,transform);
+        
         x.Bind(m.healthSubSystem);
         Tuple<StateMachine,ObjUI> things = new Tuple<StateMachine,ObjUI>(m,x);
         allUIBars.AddLast(things);

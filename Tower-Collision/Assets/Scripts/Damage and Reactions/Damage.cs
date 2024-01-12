@@ -54,6 +54,8 @@ public class Damage {
         // Debug.Log(applied);
         // Debug.Log(result);
         if (result == DamageTypes.Null){
+            Damage newDamage = new Damage(dmg,DamageTypes.Blue,ticks,sameTypeReaction,yellowReaction,cyanReaction,magentaReaction);
+            health.AddDamageSource(newDamage);
             return new DamageDetail(dmg,type,dmg*breakmod);
         }
         if (result == DamageTypes.Red ||result == DamageTypes.Blue ||result == DamageTypes.Green){
