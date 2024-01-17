@@ -532,6 +532,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 31977c1c29a0e17419db22dd8759617e, type: 2}
   - {fileID: 11400000, guid: 930e95fee1700d04f9b8b12700f2e917, type: 2}
   rate: 5
+  spawnNumber: 1
   healthCanvas: {fileID: 287139933}
   grid: {fileID: 143005947}
 --- !u!4 &360379055

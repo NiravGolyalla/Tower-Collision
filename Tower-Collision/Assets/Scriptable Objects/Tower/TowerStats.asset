@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138e4f17b3f89a84fa1a797188e89699, type: 3}
   m_Name: TowerStats
   m_EditorClassIdentifier: 
-  Health: 1000
+  Health: 20
   Attack: 2
   Defense: 0
-  DetectRange: 5
-  AttackRange: 5
+  DetectRange: 10
+  AttackRange: 10
   DamageType: 0
   BreakAmount: 10
   BreakInterval: 0
-  AtkInterval: 5
+  AtkInterval: 1
   Targeting: {fileID: 11400000, guid: 1539d2f55fc96c1498aac0422f6da325, type: 2}
   AttackAction: {fileID: 11400000, guid: f92b2cb8419787c41a32004c9e533944, type: 2}
   TargetLayer:

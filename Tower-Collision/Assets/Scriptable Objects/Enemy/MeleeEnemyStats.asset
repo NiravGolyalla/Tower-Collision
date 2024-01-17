@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd71600419f80f544a7263fdc4de8550, type: 3}
   m_Name: MeleeEnemyStats
   m_EditorClassIdentifier: 
-  Health: 10
+  Health: 15
   Attack: 2
   Defense: 2
   DetectRange: 4
-  AttackRange: 0
+  AttackRange: 2
   DamageType: 0
   BreakAmount: 10
   BreakInterval: 2
@@ -36,4 +36,5 @@ MonoBehaviour:
     type: 2}
   enemyApproachState: {fileID: 11400000, guid: ca829bddbd85a6c4f9b6ea7adfadcf90, type: 2}
   enemyAttackState: {fileID: 11400000, guid: b601ba513a8452945a4a284c231c54cd, type: 2}
+  enemyBroken: {fileID: 11400000, guid: bcbbcd2fe2d840d47a4615e414805d29, type: 2}
   randomElement: 1
