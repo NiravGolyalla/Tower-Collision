@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1830369267}
-  moveSpeed: 1
+  moveSpeed: 20
   dragSpeed: 1
   edgeScrollBorder: 20
   TargetFOV: 25

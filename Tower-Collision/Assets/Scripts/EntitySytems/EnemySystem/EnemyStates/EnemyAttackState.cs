@@ -9,6 +9,10 @@ public class EnemyAttackState : State
     {
         EnemySystem enemySystem = (EnemySystem)system;
         enemySystem.state = "EnemyAttackState";
+        enemySystem.movementSubSystem.agent.isStopped = true;
+        if(enemySystem.healthSubSystem.BreakPercent == 0){
+            return SwitchState(enemySystem,enemySystem.enemyBroken);
+        }
         if(enemySystem.attackSubSystem.currTarget == null){
             return SwitchState(enemySystem,enemySystem.enemyPathFollowState);
         }
@@ -17,6 +21,7 @@ public class EnemyAttackState : State
             return SwitchState(enemySystem,enemySystem.enemyApproachState);
         }
         enemySystem.attackSubSystem.AttackTarget();
+        
         return this;
     }
 }

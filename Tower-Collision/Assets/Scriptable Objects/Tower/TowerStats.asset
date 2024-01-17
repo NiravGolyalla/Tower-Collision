@@ -20,7 +20,7 @@ MonoBehaviour:
   DamageType: 0
   BreakAmount: 10
   BreakInterval: 0
-  AtkInterval: 1
+  AtkInterval: 5
   Targeting: {fileID: 11400000, guid: 1539d2f55fc96c1498aac0422f6da325, type: 2}
   AttackAction: {fileID: 11400000, guid: f92b2cb8419787c41a32004c9e533944, type: 2}
   TargetLayer:

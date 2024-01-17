@@ -10,10 +10,13 @@ public class EnemyApproachState : State
     {
         EnemySystem enemySystem = (EnemySystem)system;
         enemySystem.state = "EnemyApproachState";
+        enemySystem.movementSubSystem.agent.isStopped = false;
+        if(enemySystem.healthSubSystem.BreakPercent == 0){
+            return SwitchState(enemySystem,enemySystem.enemyBroken);
+        }
         if(enemySystem.attackSubSystem.currTarget == null){
             return SwitchState(enemySystem,enemySystem.enemyPathFollowState);
         }
-
         if(Vector3.Distance(enemySystem.attackSubSystem.currTarget.transform.position,enemySystem.movementSubSystem.agent.destination) > 1f){
             enemySystem.movementSubSystem.MoveToTarget(enemySystem.attackSubSystem.currTarget.transform);
             enemySystem.movementSubSystem.agent.stoppingDistance = enemySystem.attackSubSystem.AttackRange/2;

@@ -8,6 +8,8 @@ public class Damage {
     public float dmg;
     public DamageTypes type;
     public float ticks;
+    public float interval = 1f;
+    public float cooldown = 0f;
     public SameType sameTypeReaction;
     public Yellow yellowReaction;
     public Cyan cyanReaction;
@@ -49,13 +51,19 @@ public class Damage {
     }
 
     public DamageDetail CalculateDamage(HealthSubSystem health,DamageTypes applied){
-        DamageTypes result = CalculateReation(type,applied);
-        // Debug.Log(type);
-        // Debug.Log(applied);
-        // Debug.Log(result);
+        DamageTypes result = CalculateReation(type,applied);    
+        cooldown -= Time.deltaTime;
+        if(cooldown > 0f){
+            return new DamageDetail(0,type,0);
+        }
+        cooldown = interval;
+        ticks -= 1;
+    
         if (result == DamageTypes.Null){
-            Damage newDamage = new Damage(dmg,DamageTypes.Blue,ticks,sameTypeReaction,yellowReaction,cyanReaction,magentaReaction);
-            health.AddDamageSource(newDamage);
+            // if(type == DamageTypes.Blue){
+            //     Damage newDamage = new Damage(2f,DamageTypes.Green,ticks,sameTypeReaction,yellowReaction,cyanReaction,magentaReaction);
+            //     health.AddDamageSource(newDamage);
+            // }
             return new DamageDetail(dmg,type,dmg*breakmod);
         }
         if (result == DamageTypes.Red ||result == DamageTypes.Blue ||result == DamageTypes.Green){

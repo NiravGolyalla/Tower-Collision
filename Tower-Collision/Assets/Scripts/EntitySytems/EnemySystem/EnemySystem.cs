@@ -10,6 +10,7 @@ public class EnemySystem : StateMachine
     public EnemyPathFollow enemyPathFollowState{get;private set;}
     public EnemyApproachState enemyApproachState{get;private set;}
     public EnemyAttackState enemyAttackState{get;private set;}
+    public EnemyBroken enemyBroken{get;private set;}
     public string state;
 
     protected override void Awake(){
@@ -22,9 +23,10 @@ public class EnemySystem : StateMachine
 
     public override void StartSystem(){
         List<State> states = statLoader.StateLoader();
-        enemyPathFollowState = (EnemyPathFollow)states[0];
-        enemyApproachState = (EnemyApproachState)states[1];
-        enemyAttackState = (EnemyAttackState)states[2];
+        enemyPathFollowState = Instantiate((EnemyPathFollow)states[0]);
+        enemyApproachState = Instantiate((EnemyApproachState)states[1]);
+        enemyAttackState = Instantiate((EnemyAttackState)states[2]);
+        enemyBroken = Instantiate((EnemyBroken)states[3]);
         currentState = enemyPathFollowState;
 
         attackSubSystem.GetStats();

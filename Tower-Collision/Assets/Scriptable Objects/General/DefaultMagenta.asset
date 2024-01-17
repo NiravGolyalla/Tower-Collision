@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3ee4a2b07170f4db908a32dfd932d8, type: 3}
   m_Name: DefaultMagenta
   m_EditorClassIdentifier: 
-  aoeRange: 30
-  TargetLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  aoeRange: 3

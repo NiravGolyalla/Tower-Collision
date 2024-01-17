@@ -8,5 +8,6 @@ public class EnemyStats : CommonStats{
     public EnemyPathFollow enemyPathFollowState;
     public EnemyApproachState enemyApproachState;
     public EnemyAttackState enemyAttackState;
+    public EnemyBroken enemyBroken;
     public bool randomElement;
 }

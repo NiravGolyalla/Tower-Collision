@@ -36,7 +36,8 @@ public class EnemyStatsLoader : StatLoader
         {
             stats.enemyPathFollowState,
             stats.enemyApproachState,
-            stats.enemyAttackState
+            stats.enemyAttackState,
+            stats.enemyBroken
         };
         return states; 
     }

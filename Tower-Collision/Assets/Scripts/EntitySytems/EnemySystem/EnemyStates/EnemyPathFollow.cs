@@ -11,9 +11,12 @@ public class EnemyPathFollow : State
     
         EnemySystem enemySystem = (EnemySystem)system;
         enemySystem.state = "EnemyPathFollow";
+        enemySystem.movementSubSystem.agent.isStopped = false;
 
+        if(enemySystem.healthSubSystem.BreakPercent == 0){
+            return SwitchState(enemySystem,enemySystem.enemyBroken);
+        }
         enemySystem.attackSubSystem.DetectTarget();
-        
         if(Vector3.Distance(enemySystem.movementSubSystem.target.position,enemySystem.movementSubSystem.agent.destination) > 1f){
             enemySystem.movementSubSystem.MoveToTarget(enemySystem.movementSubSystem.target);
             enemySystem.movementSubSystem.agent.stoppingDistance = 0f;

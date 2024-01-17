@@ -62,9 +62,9 @@ public class AttackSubSystem : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, AttackRange);
-        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, DetectRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, AttackRange);
     }
 
     public void DetectTarget(){

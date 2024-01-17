@@ -10,6 +10,7 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] GameObject prefab;
     [SerializeField] EnemyStats[] scriptableObjects;
     [SerializeField] float rate = 5f;
+    [SerializeField] float spawnNumber = 1f;
     [SerializeField] HealthCanvas healthCanvas;
     [SerializeField] GridMaker grid;
 
@@ -82,7 +83,7 @@ public class EnemySpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(rate);
             List<Transform>path = GeneratePaths();
-            for(int j = 0; j < 2; j++){
+            for(int j = 0; j < spawnNumber; j++){
                 GameObject f = Instantiate(prefab, path[0].position, Quaternion.identity,gameObject.transform);
                 EnemyStats stats = scriptableObjects[Random.Range(0, scriptableObjects.Length)];
                 f.GetComponent<EnemyStatsLoader>().SetStats(stats);
@@ -90,6 +91,7 @@ public class EnemySpawnManager : MonoBehaviour
                 f.GetComponent<AIMovementSubSystem>().setPath(path);
                 healthCanvas.AddHealthBar(f.GetComponent<EnemySystem>());    
             }
+            
             
 
         }
