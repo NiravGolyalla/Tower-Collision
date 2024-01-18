@@ -12,6 +12,10 @@ public class TowerBuySystem : MonoBehaviour
     public LinkedList<TowerSystem> towersActive = new LinkedList<TowerSystem>();
     int money = 5;
     
+    void Start(){
+        text.SetText(money.ToString());
+    }
+
     void Update(){
         LinkedListNode<TowerSystem> head = towersActive.First;
         LinkedListNode<TowerSystem> placeholder;
@@ -36,7 +40,6 @@ public class TowerBuySystem : MonoBehaviour
             GameObject s = Instantiate(towerprefab, ptile.getSpawnPoint().position, Quaternion.identity);
             s.transform.parent = ptile.transform;
             TowerSystem system = s.GetComponent<TowerSystem>();
-            system.StartSystem();
             ptile.place = system;
             towersActive.AddLast(system);
             healthCanvas.AddHealthBar(system);

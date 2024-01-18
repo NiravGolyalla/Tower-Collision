@@ -1,23 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
-using System.Linq;
-using Unity.VisualScripting;
+
 
 public class EnemySpawnManager : MonoBehaviour
 {
-    [SerializeField] GameObject prefab;
-    [SerializeField] EnemyStats[] scriptableObjects;
-    [SerializeField] float rate = 5f;
+    [SerializeField]List<GameObject> prefab;
+    [SerializeField]int index = 0;
+    [SerializeField] float delay = 5f;
+    [SerializeField] float wavedelay = 30f;
     [SerializeField] float spawnNumber = 1f;
     [SerializeField] HealthCanvas healthCanvas;
     [SerializeField] GridMaker grid;
     [SerializeField] TowerBuySystem buy;
+    List<string> waves = new List<string>{
+    "001 001",
+    "0011 0011 0011",
+    "1012 012 0102",
+    "00100 00102 00102",
+    "10102 10012 00022",
+    "11122 00022 00122",
+    "20010 01001 20013",
+    "30101 30100 31001",
+    "30012 30102 32001"
+    };
 
     void Start()
     {
-        // GeneratePaths();
         StartCoroutine(SpawnRate());
     }
 
@@ -79,23 +88,22 @@ public class EnemySpawnManager : MonoBehaviour
 
     public IEnumerator SpawnRate()
     {
-
-        while (true)
-        {
-            yield return new WaitForSeconds(rate);
+        yield return new WaitForSeconds(5f);
+        while(index < waves.Count){
             List<Transform>path = GeneratePaths();
-            for(int j = 0; j < spawnNumber; j++){
-                GameObject f = Instantiate(prefab, path[0].position, Quaternion.identity,gameObject.transform);
-                EnemyStats stats = scriptableObjects[Random.Range(0, scriptableObjects.Length)];
-                f.GetComponent<EnemyStatsLoader>().SetStats(stats);
-                f.GetComponent<EnemySystem>().StartSystem();
-                f.GetComponent<AIMovementSubSystem>().setPath(path);
-                healthCanvas.AddHealthBar(f.GetComponent<EnemySystem>());
-                f.GetComponent<EnemySystem>().onDeath += buy.KillEnemy;
+            foreach(char c in waves[index]){
+                if(c == ' '){
+                    path = GeneratePaths();
+                } else{
+                    GameObject f = Instantiate(prefab[c-'0'], path[0].position, Quaternion.identity,gameObject.transform);
+                    f.GetComponent<AIMovementSubSystem>().setPath(path);
+                    healthCanvas.AddHealthBar(f.GetComponent<EnemySystem>());
+                    f.GetComponent<EnemySystem>().onDeath += buy.KillEnemy;
+                }
+                yield return new WaitForSeconds(delay);
             }
-            
-            
-
+            yield return new WaitForSeconds(wavedelay);
+            index += 1;
         }
     }
 }

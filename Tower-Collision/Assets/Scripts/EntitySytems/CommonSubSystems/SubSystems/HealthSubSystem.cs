@@ -24,15 +24,12 @@ public class HealthSubSystem : MonoBehaviour
         mainSystem = GetComponent<StateMachine>();
     }
 
-    public void GetStats(){
+    void Start(){
         LoadHealthStats(mainSystem.statLoader.HealthLoader());
     }
 
     void Update(){
-        if(mainSystem.enableMachine){
-            ProcessDamage();
-            // print(BreakPercent);
-        }
+        ProcessDamage();
     }
 
     public void LoadHealthStats(HealthStats other)

@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4209448390993835812}
   - component: {fileID: 7937966064256470689}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907326ee966b4c740a068591d07c5b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 930e95fee1700d04f9b8b12700f2e917, type: 2}
+  stats: {fileID: 11400000, guid: 31977c1c29a0e17419db22dd8759617e, type: 2}
 --- !u!114 &4209448390993835812
 MonoBehaviour:
   m_ObjectHideFlags: 0

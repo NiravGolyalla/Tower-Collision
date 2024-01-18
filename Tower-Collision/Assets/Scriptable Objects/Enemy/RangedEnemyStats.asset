@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd71600419f80f544a7263fdc4de8550, type: 3}
   m_Name: RangedEnemyStats
   m_EditorClassIdentifier: 
-  Health: 15
-  Attack: 2
+  Health: 16
+  Attack: 4
   Defense: 2
   DetectRange: 6
   AttackRange: 4

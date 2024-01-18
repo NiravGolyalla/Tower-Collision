@@ -14,27 +14,20 @@ public class EnemySystem : StateMachine
     public string state;
     public event Action onDeath;
 
-    protected override void Awake(){
-        base.Awake();
+    void Awake(){
         statLoader = GetComponent<EnemyStatsLoader>();
         attackSubSystem = GetComponent<AttackSubSystem>();
         healthSubSystem = GetComponent<HealthSubSystem>();
         movementSubSystem = GetComponent<AIMovementSubSystem>();
     }
 
-    public override void StartSystem(){
+    void Start(){
         List<State> states = statLoader.StateLoader();
         enemyPathFollowState = Instantiate((EnemyPathFollow)states[0]);
         enemyApproachState = Instantiate((EnemyApproachState)states[1]);
         enemyAttackState = Instantiate((EnemyAttackState)states[2]);
         enemyBroken = Instantiate((EnemyBroken)states[3]);
         currentState = enemyPathFollowState;
-
-        attackSubSystem.GetStats();
-        healthSubSystem.GetStats();
-        movementSubSystem.GetStats();
-        
-        enableMachine = true;
     }
 
     public override void Death()

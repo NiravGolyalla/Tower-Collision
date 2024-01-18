@@ -29,14 +29,12 @@ public class AttackSubSystem : MonoBehaviour
         mainSystem = GetComponent<StateMachine>();
     }
 
-    public void GetStats(){
+    void Start(){
         LoadAttackStats(mainSystem.statLoader.AttackLoader());
     }
 
     void Update(){
-        if(mainSystem.enableMachine){
-            ManageCooldown();
-        }
+        ManageCooldown();
     }
 
     public void LoadAttackStats(AttackStats other)

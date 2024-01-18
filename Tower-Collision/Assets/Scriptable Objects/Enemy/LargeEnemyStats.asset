@@ -9,28 +9,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 138e4f17b3f89a84fa1a797188e89699, type: 3}
-  m_Name: TowerStats
+  m_Script: {fileID: 11500000, guid: cd71600419f80f544a7263fdc4de8550, type: 3}
+  m_Name: LargeEnemyStats
   m_EditorClassIdentifier: 
   Health: 64
-  Attack: 4
-  Defense: 0
-  DetectRange: 10
-  AttackRange: 10
+  Attack: 8
+  Defense: 2
+  DetectRange: 4
+  AttackRange: 2
   DamageType: 0
   BreakAmount: 10
-  BreakInterval: 0
-  AtkInterval: 1
-  Targeting: {fileID: 11400000, guid: 1539d2f55fc96c1498aac0422f6da325, type: 2}
+  BreakInterval: 2
+  AtkInterval: 2
+  Targeting: {fileID: 11400000, guid: 98c935761ae567740ac3ec13c5ce72fc, type: 2}
   AttackAction: {fileID: 11400000, guid: f92b2cb8419787c41a32004c9e533944, type: 2}
   TargetLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   sameType: {fileID: 11400000, guid: 5df4c7ef10c45fb4ea1ebf95ba67094f, type: 2}
   cyan: {fileID: 11400000, guid: 637516385c588be4d9f411cf904cebce, type: 2}
   magenta: {fileID: 11400000, guid: 852c913fdca8c664397b9787634d2be3, type: 2}
   yellow: {fileID: 11400000, guid: 4c58104e339a02d4c8c1dcf49f4aa27b, type: 2}
   ticks: 0
-  SearchState: {fileID: 11400000, guid: 813f516d5aeaa2041a67c61fbaaf7dd7, type: 2}
-  AttackState: {fileID: 11400000, guid: 69a1907732e316345bd59a3534a54172, type: 2}
-  blockAmount: 2
+  speed: 2
+  enemyPathFollowState: {fileID: 11400000, guid: ddc1f778700310d4691ec2979f795a57,
+    type: 2}
+  enemyApproachState: {fileID: 11400000, guid: ca829bddbd85a6c4f9b6ea7adfadcf90, type: 2}
+  enemyAttackState: {fileID: 11400000, guid: b601ba513a8452945a4a284c231c54cd, type: 2}
+  enemyBroken: {fileID: 11400000, guid: bcbbcd2fe2d840d47a4615e414805d29, type: 2}
+  randomElement: 1
