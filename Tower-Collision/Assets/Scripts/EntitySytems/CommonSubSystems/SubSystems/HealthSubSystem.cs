@@ -51,7 +51,7 @@ public class HealthSubSystem : MonoBehaviour
         BreakAmount -= value.breakdmg;
 
         if(Health <= 0f){
-            Destroy(gameObject);
+            mainSystem.Death();
             return;
         }
         if(BreakAmount <= 0f){

@@ -37,13 +37,12 @@ public class GridMaker : MonoBehaviour
     public List<(int, int)> ends = new List<(int, int)>();
     public Dictionary<(int, int), Tile> tiles{get;private set;}
     public Dictionary<(int,int), List<(int,int)>> AdjacencyMatrix = new Dictionary<(int, int), List<(int, int)>>();
-    [SerializeField] GameObject towerprefab;
     Color original_color;
     [SerializeField] Color highlight;
     GameObject lastHighlightedObject = null;
-    public LinkedList<TowerSystem> towersActive = new LinkedList<TowerSystem>();
     private NavMeshSurface surface;
-    [SerializeField] HealthCanvas healthCanvas;
+    [SerializeField]TowerBuySystem buy;
+    
 
     void Awake()
     {
@@ -74,17 +73,7 @@ public class GridMaker : MonoBehaviour
 
     void Update()
     {
-        LinkedListNode<TowerSystem> head = towersActive.First;
-        LinkedListNode<TowerSystem> placeholder;
-        while (head != null)
-        {
-            placeholder = head.Next;
-            if (head.Value == null)
-            {
-                towersActive.Remove(head);
-            }
-            head = placeholder;
-        }
+        
         GameObject curr = MouseManager.instance.getMouseHit();
         if (curr == null)
         {
@@ -95,7 +84,6 @@ public class GridMaker : MonoBehaviour
             }
             return;
         }
-
 
         if (curr != lastHighlightedObject)
         {
@@ -111,16 +99,7 @@ public class GridMaker : MonoBehaviour
         if (Input.GetMouseButton(1) && curr != null)
         {
             PlaceableTile ptile = curr.GetComponent<PlaceableTile>();
-            if (ptile != null && ptile.place == null)
-            {
-                GameObject s = Instantiate(towerprefab, ptile.getSpawnPoint().position, Quaternion.identity);
-                s.transform.parent = ptile.transform;
-                s.GetComponent<TowerSystem>().StartSystem();
-                ptile.place = s.GetComponent<TowerSystem>();
-                towersActive.AddLast(s.GetComponent<TowerSystem>());
-                healthCanvas.AddHealthBar(s.GetComponent<TowerSystem>());
-                // surface.BuildNavMesh();
-            }
+            buy.PlaceTower(ptile);
         }
     }
     void GenerateGrid()

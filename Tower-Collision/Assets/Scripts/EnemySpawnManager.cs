@@ -13,6 +13,7 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] float spawnNumber = 1f;
     [SerializeField] HealthCanvas healthCanvas;
     [SerializeField] GridMaker grid;
+    [SerializeField] TowerBuySystem buy;
 
     void Start()
     {
@@ -89,7 +90,8 @@ public class EnemySpawnManager : MonoBehaviour
                 f.GetComponent<EnemyStatsLoader>().SetStats(stats);
                 f.GetComponent<EnemySystem>().StartSystem();
                 f.GetComponent<AIMovementSubSystem>().setPath(path);
-                healthCanvas.AddHealthBar(f.GetComponent<EnemySystem>());    
+                healthCanvas.AddHealthBar(f.GetComponent<EnemySystem>());
+                f.GetComponent<EnemySystem>().onDeath += buy.KillEnemy;
             }
             
             

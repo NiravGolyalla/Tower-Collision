@@ -29,5 +29,10 @@ public class TowerSystem : StateMachine
 
         enableMachine = true;
     }
+
+    public override void Death()
+    {
+        base.Death();
+    }
 }
     

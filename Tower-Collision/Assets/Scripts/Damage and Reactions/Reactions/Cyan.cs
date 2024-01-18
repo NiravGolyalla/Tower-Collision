@@ -10,7 +10,7 @@ public class Cyan : ReactionType
         //Deal Cyan Damage
         //Attack Break Bar
         float dmgAmount = Damage.multiplier[DamageTypes.Cyan]*source.dmg;
-        Debug.Log(dmgAmount+ " " + source.dmg + " " + dmgAmount*Damage.cyanbreakmod);
+        // Debug.Log(dmgAmount+ " " + source.dmg + " " + dmgAmount*Damage.cyanbreakmod);
         return new DamageDetail(dmgAmount,source.type,dmgAmount*Damage.cyanbreakmod);
     }
 

@@ -13,7 +13,7 @@ public class EnemyBroken : State
     public override State UpdateState(StateMachine system)
     {
         EnemySystem enemySystem = (EnemySystem)system;
-        Debug.Log("Broken");
+        // Debug.Log("Broken");
         enemySystem.movementSubSystem.agent.isStopped = true;
         if(delay <= 0f){
             enemySystem.healthSubSystem.RegenBreak(Mathf.Pow(increase,2)*(multiplier)/2);

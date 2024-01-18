@@ -13,11 +13,16 @@ public abstract class StateMachine : MonoBehaviour
     public HealthSubSystem healthSubSystem {protected set;get;}
     protected State currentState;
 
+    
+
     protected virtual void Awake(){
         enableMachine = false;
     }
 
     public abstract void StartSystem();
+    public virtual void Death(){
+        Destroy(gameObject);
+    }
 
     protected void StateUpdate(){
         State nextState = currentState?.UpdateState(this);

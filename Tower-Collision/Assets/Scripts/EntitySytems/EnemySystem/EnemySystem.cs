@@ -12,6 +12,7 @@ public class EnemySystem : StateMachine
     public EnemyAttackState enemyAttackState{get;private set;}
     public EnemyBroken enemyBroken{get;private set;}
     public string state;
+    public event Action onDeath;
 
     protected override void Awake(){
         base.Awake();
@@ -35,5 +36,13 @@ public class EnemySystem : StateMachine
         
         enableMachine = true;
     }
+
+    public override void Death()
+    {
+        onDeath?.Invoke();
+        base.Death();
+    }
+
+
 
 }
