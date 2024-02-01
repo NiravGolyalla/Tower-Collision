@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MediumEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4209448390993835812, guid: 60b6e6d109c25004a99a0f894036c976,
+        type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6676416113058351928, guid: 60b6e6d109c25004a99a0f894036c976,
         type: 3}
       propertyPath: stats

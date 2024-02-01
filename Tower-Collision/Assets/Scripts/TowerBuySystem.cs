@@ -11,6 +11,7 @@ public class TowerBuySystem : MonoBehaviour
     [SerializeField] TMP_Text text;
     public LinkedList<TowerSystem> towersActive = new LinkedList<TowerSystem>();
     int money = 5;
+    int TowerLimit = 1000;
     
     void Start(){
         text.SetText(money.ToString());
@@ -36,7 +37,7 @@ public class TowerBuySystem : MonoBehaviour
     }
 
     public void PlaceTower(PlaceableTile ptile){
-        if (ptile != null && ptile.place == null && money > 0){
+        if (ptile != null && ptile.place == null && money > 0 && towersActive.Count < TowerLimit){
             GameObject s = Instantiate(towerprefab, ptile.getSpawnPoint().position, Quaternion.identity);
             s.transform.parent = ptile.transform;
             TowerSystem system = s.GetComponent<TowerSystem>();

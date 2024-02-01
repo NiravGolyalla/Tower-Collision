@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField]List<GameObject> prefab;
+    [SerializeField]bool repeat = true;
     [SerializeField]int index = 0;
     [SerializeField] float delay = 5f;
     [SerializeField] float wavedelay = 30f;
@@ -104,6 +105,10 @@ public class EnemySpawnManager : MonoBehaviour
             }
             yield return new WaitForSeconds(wavedelay);
             index += 1;
+            if(repeat){
+                index %= waves.Count;
+            }
+                
         }
     }
 }
